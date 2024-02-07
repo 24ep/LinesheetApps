@@ -172,9 +172,9 @@
             <script type="module">
                 // var  PythonShell = ''
 
-                import { PythonShell } from '../node_modules/python-shell';
-                import XLSX from '../node_modules/xlsx';
-                import path from '../node_modules/path';
+                import { PythonShell } from '/node_modules/python-shell';
+                import XLSX from '/node_modules/xlsx';
+                import path from '/node_modules/path';
 
                         var configOptions = [
                         { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
@@ -189,8 +189,8 @@
                         configOptions.forEach(option => {
                             let optionList = '';
 
-                            new PythonShell(path.join(__dirname, '../src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
-                            // new PythonShell(`src/../src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
+                            new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+                            // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
                             .on('error', err => {
                                 console.error('An error occurred while running the Python script:', err);
                                 // handle the error here
@@ -238,7 +238,7 @@
                         }
                         function get_folder_linesheetlist(){
                             var folder_list_linesheetList=''
-                            new PythonShell(path.join(__dirname, `../src/page/linesheet/config/get_folder_list.py`), {args: ['nothing']})
+                            new PythonShell(path.join(__dirname, `/src/page/linesheet/config/get_folder_list.py`), {args: ['nothing']})
                             .on('error', err => {
                                 console.error('An error occurred while running the Python script:', err);
                                 // handle the error here
@@ -254,7 +254,7 @@
                         function get_linesheetlist(folder){
                             Notiflix.Loading.standard('Opening..');
                             var linesheetList=''
-                            new PythonShell(path.join(__dirname, `../src/page/linesheet/config/new_linesheet_get_list.py`), {args: [folder]})
+                            new PythonShell(path.join(__dirname, `/src/page/linesheet/config/new_linesheet_get_list.py`), {args: [folder]})
                             .on('error', err => {
                                 console.error('An error occurred while running the Python script:', err);
                                 Notiflix.Loading.remove();
@@ -287,7 +287,7 @@
                             var errormessage='';
                             let generate_form_ms = '';
                             console.log('reading_python');
-                            new PythonShell(path.join(__dirname, `../src/page/linesheet/config/new_linesheet_create.py`), {
+                            new PythonShell(path.join(__dirname, `/src/page/linesheet/config/new_linesheet_create.py`), {
                                 args: ['generate_form', brand, template,sku,launch_date,stock_source,sale_channel,production_type,contact_person]
                             })
                             .on('error', err => {
@@ -329,7 +329,7 @@
                                     'you file name is '+ generate_form_ms,
                                     'Open the file',
                                     function cb() {
-                                        new PythonShell(path.join(__dirname, `../src/page/linesheet/config/open_excel_linesheet.py`), {
+                                        new PythonShell(path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
                                             args: [generate_form_ms]
                                         })
                                     },
@@ -339,7 +339,7 @@
                         }
 
                         function open_xlsm(file_location){
-                            new PythonShell(path.join(__dirname, `../src/page/linesheet/config/open_excel_linesheet.py`), {
+                            new PythonShell(path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
                                 args: [file_location]
                             })
                             .on('error', err => {
@@ -383,12 +383,12 @@
                         function read_json_xlsm(filePath) {
                             // Storing a variable in session storage
                             sessionStorage.setItem('linesheet_file_path', filePath);
-                            load_page(path.join(__dirname, '../src/page/linesheet/edit_linesheet.html'));
+                            load_page(path.join(__dirname, '/src/page/linesheet/edit_linesheet.html'));
                         }
                         function read_json_xlsm_convert(filePath) {
                             // Storing a variable in session storage
                             sessionStorage.setItem('linesheet_file_path', filePath);
-                            load_page(path.join(__dirname, '../src/page/linesheet/convert_linesheet.html'));
+                            load_page(path.join(__dirname, '/src/page/linesheet/convert_linesheet.html'));
                         }
                         function get_linesheet_information(attribute_name){
 
@@ -397,13 +397,13 @@
                         }
 
 
-                        import fs from '../node_modules/fs';
-                        import { execSync, exec } from '../node_modules/child_process';
-                        import { promisify } from '../node_modules/util';
-                        import { appendFile } from '../node_modules/fs';
-                        import which from '../node_modules/which';
-                        import https from '../node_modules/https';
-                        import opn from '../node_modules/opn';
+                        import fs from '/node_modules/fs';
+                        import { execSync, exec } from '/node_modules/child_process';
+                        import { promisify } from '/node_modules/util';
+                        import { appendFile } from '/node_modules/fs';
+                        import which from '/node_modules/which';
+                        import https from '/node_modules/https';
+                        import opn from '/node_modules/opn';
                         // import path from 'path';
 
                         function revealInFileExplorer(path) {
@@ -420,8 +420,8 @@
 
                     </script>
  <script type="module">
-    import fs from '../node_modules/fs';
-    import path from '../node_modules/path';
+    import fs from '/node_modules/fs';
+    import path from '/node_modules/path';
     function createFolder(folderPath) {
     fs.mkdir(folderPath, { recursive: true }, (err) => {
         if (err) {
