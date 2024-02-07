@@ -1,10 +1,9 @@
-
-const express = require('express');
+import express from 'express';
 const app = express();
-const path = require('path');
+import path from 'path';
 const port = 3000;
 
-const fs = require('fs');
+import fs from 'fs';
 
 
 // Set the PYTHONHOME and PATH environment variables
