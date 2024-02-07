@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/'));
 
 // เส้นทางหลักของแอปพลิเคชัน
 app.get('/', (req, res) => {
-  const indexPath = path.join(__dirname, 'ฝsrc/index.html');
+  const indexPath = path.join(__dirname, '/src/index.html');
   res.sendFile(indexPath);
   console.log(`Current path: ${indexPath}`);
 });
