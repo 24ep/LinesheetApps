@@ -1,4 +1,5 @@
-
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 // Import required modules
 import express from 'express';
 import path from 'path';
@@ -14,8 +15,13 @@ const port = 3000;
   // process.env.PYTHONHOME = path.join(__dirname, '../src/pythons');
   // process.env.PATH = `${process.env.PYTHONHOME};${process.env.PATH}`;
 
+// Get the directory name of the current module file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Set the PYTHONHOME environment variable
 process.env.PYTHONHOME = path.join(__dirname, 'pythons');
-process.env.PATH = `${process.env.PYTHONHOME};${process.env.PATH}`;
+
 
 app.use(express.static(__dirname + '/'));
 
