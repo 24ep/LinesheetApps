@@ -168,13 +168,13 @@
                     </div>
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/python-shell@5.0.0/index.min.js"></script>
-            <script >
+
+            <script type="module">
                 var  PythonShell = ''
 
-                // import { PythonShell } from 'python-shell';
-                // import XLSX from 'xlsx';
-                // import path from 'path';
+                import { PythonShell } from 'python-shell';
+                import XLSX from 'xlsx';
+                import path from 'path';
 
                         var configOptions = [
                         { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
@@ -397,14 +397,14 @@
                         }
 
 
-                        // import fs from 'fs';
-                        // import { execSync, exec } from 'child_process';
-                        // import { promisify } from 'util';
-                        // import { appendFile } from 'fs';
-                        // import which from 'which';
-                        // import https from 'https';
-                        // import opn from 'opn';
-                        // import path from 'path';
+                        import fs from 'fs';
+                        import { execSync, exec } from 'child_process';
+                        import { promisify } from 'util';
+                        import { appendFile } from 'fs';
+                        import which from 'which';
+                        import https from 'https';
+                        import opn from 'opn';
+                        import path from 'path';
 
                         function revealInFileExplorer(path) {
                             var folderPath = path;
@@ -419,9 +419,9 @@
 
 
                     </script>
- <script >
-    // import fs from 'fs';
-    // import path from 'path';
+ <script type="module">
+    import fs from 'fs';
+    import path from 'path';
     function createFolder(folderPath) {
     fs.mkdir(folderPath, { recursive: true }, (err) => {
         if (err) {
