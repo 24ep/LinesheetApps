@@ -172,9 +172,9 @@
             <script type="module">
                 // var  PythonShell = ''
 
-                import { PythonShell } from '../src/node_modules/python-shell';
-                import XLSX from '../src/node_modules/xlsx';
-                import path from '../src/node_modules/path';
+                import { PythonShell } from '../node_modules/python-shell';
+                import XLSX from '../node_modules/xlsx';
+                import path from '../node_modules/path';
 
                         var configOptions = [
                         { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
@@ -397,13 +397,13 @@
                         }
 
 
-                        import fs from '../src/node_modules/fs';
-                        import { execSync, exec } from '../src/node_modules/child_process';
-                        import { promisify } from '../src/node_modules/util';
-                        import { appendFile } from '../src/node_modules/fs';
-                        import which from '../src/node_modules/which';
-                        import https from '../src/node_modules/https';
-                        import opn from '../src/node_modules/opn';
+                        import fs from '../node_modules/fs';
+                        import { execSync, exec } from '../node_modules/child_process';
+                        import { promisify } from '../node_modules/util';
+                        import { appendFile } from '../node_modules/fs';
+                        import which from '../node_modules/which';
+                        import https from '../node_modules/https';
+                        import opn from '../node_modules/opn';
                         // import path from 'path';
 
                         function revealInFileExplorer(path) {
@@ -420,8 +420,8 @@
 
                     </script>
  <script type="module">
-    import fs from '../src/node_modules/fs';
-    import path from '../src/node_modules/path';
+    import fs from '../node_modules/fs';
+    import path from '../node_modules/path';
     function createFolder(folderPath) {
     fs.mkdir(folderPath, { recursive: true }, (err) => {
         if (err) {
