@@ -4,6 +4,10 @@ import path from 'path';
 const port = 3000;
 
 import fs from 'fs';
+import { PythonShell } from 'python-shell';
+import XLSX from 'xlsx';
+import path from 'path';
+
 
 
 // Set the PYTHONHOME and PATH environment variables
