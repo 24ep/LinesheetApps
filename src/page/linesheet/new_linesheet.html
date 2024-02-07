@@ -171,10 +171,9 @@
             <script>
                 var  PythonShell = ''
 
-                var  { PythonShell } = require('python-shell');
-                // const  {DataTable}= require('datatables.net-dt');
-                var XLSX = require('xlsx');
-                var path = require('path');
+                import { PythonShell } from 'python-shell';
+                import XLSX from 'xlsx';
+                import path from 'path';
 
 
 
@@ -399,19 +398,15 @@
                         }
 
 
-                        var fs = require('fs');
-                        var { execSync } = require('child_process');
-                        var { execInstall } = require('child_process');
+                        import fs from 'fs';
+                        import { execSync, exec } from 'child_process';
+                        import { promisify } from 'util';
+                        import { appendFile } from 'fs';
+                        import which from 'which';
+                        import https from 'https';
+                        import opn from 'opn';
+                        import path from 'path';
 
-                        var { exec } = require('child_process');
-                        var { promisify } = require('util');
-                        var { appendFile } = require('fs');
-                        var which = require('which');
-                        var https = require('https');
-
-
-                        var opn = require('opn');
-                        var path = require('path');
                         function revealInFileExplorer(path) {
                             var folderPath = path;
                                 opn(folderPath)
@@ -426,8 +421,8 @@
 
                     </script>
  <script>
-    var fs = require('fs');
-    var path = require('path');
+    import fs from 'fs';
+    import path from 'path';
     function createFolder(folderPath) {
     fs.mkdir(folderPath, { recursive: true }, (err) => {
         if (err) {
