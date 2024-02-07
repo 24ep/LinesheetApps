@@ -8,6 +8,13 @@ import { PythonShell } from 'python-shell';
 import XLSX from 'xlsx';
 
 
+import { execSync, exec } from 'child_process';
+import { promisify } from 'util';
+import { appendFile } from 'fs';
+import which from 'which';
+import https from 'https';
+import opn from 'opn';
+
 
 // Set the PYTHONHOME and PATH environment variables
 
