@@ -8,14 +8,6 @@
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
   "main": "src/index.js",
-  "scripts": {
-    "dev": "npm install && npm start",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "build": "electron-builder build"
-  },
   "keywords": [],
   "author": {
     "name": "Central Online operated by Central Department Store Limited Head Office",
@@ -68,19 +60,5 @@
     "electron-builder": "^23.6.0",
     "electron-rebuild": "^3.2.9",
     "mysql": "^2.18.1"
-  },
-  "build": {
-    "appId": "com.electron.spear",
-    "productName": "spear",
-    "publish": {
-      "provider": "generic",
-      "url": "https://dist.anystack.sh/v1/electron"
-    },
-    "extraResources": [
-      {
-        "from": "src",
-        "to": "src"
-      }
-    ]
   }
 }
