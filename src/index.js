@@ -15,11 +15,11 @@ const fs = require('fs');
 process.env.PYTHONHOME = path.join(__dirname, 'pythons');
 process.env.PATH = `${process.env.PYTHONHOME};${process.env.PATH}`;
 
-app.use(express.static(__dirname + '/src'));
+app.use(express.static(__dirname + '/'));
 
 // เส้นทางหลักของแอปพลิเคชัน
 app.get('/', (req, res) => {
-  const indexPath = path.join(__dirname, '/index.html');
+  const indexPath = path.join(__dirname, 'ฝsrc/index.html');
   res.sendFile(indexPath);
   console.log(`Current path: ${indexPath}`);
 });
