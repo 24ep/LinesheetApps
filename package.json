@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "keywords": [],
   "author": {
     "name": "Central Online operated by Central Department Store Limited Head Office",
