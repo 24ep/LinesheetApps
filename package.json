@@ -1,5 +1,6 @@
 {
   "name": "spear",
+  "type": "module",
   "productName": "spear",
   "version": "2.3.2",
   "description": "spear",
@@ -7,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
-  "main": "index.mjs",
+  "main": "index.js",
   "keywords": [],
   "author": {
     "name": "Central Online operated by Central Department Store Limited Head Office",
