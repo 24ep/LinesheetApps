@@ -380,7 +380,7 @@ convert_column = configurable_ao+linesheet_columns
 # Add new columns to the DataFrame
 linesheet = pd.DataFrame(linesheet, columns=linesheet.columns.tolist() + configurable_ao)
 linesheet = linesheet.loc[:, ~linesheet.columns.duplicated()]
-linesheet.to_csv('linesheet.csv')
+# linesheet.to_csv('linesheet.csv')
 # loop in linesheet then apply the functions to the columns
 for linesheet_code in convert_column:
 
