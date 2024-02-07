@@ -22,7 +22,36 @@ app.get('/', (req, res) => {
   const indexPath = path.join(__dirname, '/src/index.html');
   res.sendFile(indexPath);
   console.log(`Current path: ${indexPath}`);
-  
+
+  // Function to recursively traverse directory and log all file paths
+  function logAllPaths(directoryPath) {
+    // Get all files and subdirectories in the current directory
+    fs.readdir(directoryPath, { withFileTypes: true }, (err, files) => {
+      if (err) {
+        console.error(`Error reading directory ${directoryPath}: ${err}`);
+        return;
+      }
+
+      // Iterate through each file or subdirectory
+      files.forEach((file) => {
+        // Construct full path to the file or subdirectory
+        const fullPath = path.join(directoryPath, file.name);
+
+        // Check if it's a directory
+        if (file.isDirectory()) {
+          // If it's a directory, recursively call logAllPaths to traverse it
+          logAllPaths(fullPath);
+        } else {
+          // If it's a file, log its path
+          console.log(fullPath);
+        }
+      });
+    });
+  }
+
+  // Call the function to log all paths starting from the current directory
+  logAllPaths(__dirname);
+
 });
 
 app.listen(port, () => {
