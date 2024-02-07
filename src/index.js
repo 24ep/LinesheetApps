@@ -11,8 +11,11 @@ import fs from 'fs';
   // process.env.PYTHONHOME = path.join(__dirname, '../src/pythons');
   // process.env.PATH = `${process.env.PYTHONHOME};${process.env.PATH}`;
 
+// Use import.meta.url to get the module URL and then extract the directory
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+
 process.env.PYTHONHOME = path.join(__dirname, 'pythons');
-process.env.PATH = `${process.env.PYTHONHOME};${process.env.PATH}`;
 
 app.use(express.static(__dirname + '/'));
 
