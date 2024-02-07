@@ -172,7 +172,7 @@
             <script type="module">
                 // var  PythonShell = ''
 
-                import { PythonShell } from './python-shell';
+                import { PythonShell } from '/python-shell';
                 import XLSX from 'xlsx';
                 import path from 'path';
 
@@ -397,10 +397,10 @@
                         }
 
 
-                        import fs from './fs';
+                        import fs from '/fs';
                         import { execSync, exec } from 'child_process';
                         import { promisify } from 'util';
-                        import { appendFile } from './fs';
+                        import { appendFile } from '/fs';
                         import which from 'which';
                         import https from 'https';
                         import opn from 'opn';
@@ -420,7 +420,7 @@
 
                     </script>
  <script type="module">
-    import fs from './fs';
+    import fs from '/fs';
     import path from 'path';
     function createFolder(folderPath) {
     fs.mkdir(folderPath, { recursive: true }, (err) => {
