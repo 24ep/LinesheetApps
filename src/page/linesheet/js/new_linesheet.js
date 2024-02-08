@@ -76,35 +76,40 @@ configOptions.forEach(option => {
     // });
 
 
-
-    const pythonScriptPath = path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py');
-    const args = option.args; // Assuming option.args is an array of command line arguments
-
-    const pythonProcess = spawn('python', [pythonScriptPath, ...args]);
-
-    pythonProcess.stdout.on('data', (data) => {
-        // Handle standard output
-        optionList += data.toString();
+// Assuming you have a function to handle the execution of Python code
+async function runPythonScript(scriptPath, args) {
+    // Wait for Pyodide to load
+    await languagePluginLoader;
+  
+    // Convert args to a string
+    const argsString = JSON.stringify(args);
+  
+    // Execute Python code using Pyodide
+    const result = pyodide.runPythonAsync(`
+      import sys
+      sys.argv = ['${scriptPath}', ${argsString}]
+      exec(open('${scriptPath}').read())
+    `);
+  
+    // Handle the result as needed
+    console.log(result);
+  }
+  
+  // Call the function with your script path and arguments
+  runPythonScript('src/page/linesheet/config/new_linesheet_config.py', option.args)
+    .then(() => {
+      // Code to run after the Python script execution is complete
+      // For example, update the UI
+      document.getElementById(option.id).innerHTML = optionList;
+      setTimeout(() => {
+        new TomSelect(option.slim_id, {});
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error('An error occurred while running the Python script:', error);
+      // Handle the error here
     });
-
-    pythonProcess.stderr.on('data', (data) => {
-        console.error('Received error message:', data.toString());
-        // Notiflix.Loading.remove();
-    });
-
-    pythonProcess.on('error', (err) => {
-        console.error('An error occurred while running the Python script:', err);
-        // Handle the error here
-    });
-
-    pythonProcess.on('close', (code) => {
-        if (optionList) {
-            document.getElementById(option.id).innerHTML = optionList;
-            setTimeout(() => {
-                new TomSelect(option.slim_id, {});
-            }, 2000);
-        }
-    });
+  
 
 });
 
