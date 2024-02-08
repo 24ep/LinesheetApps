@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
+  "script":{
+    "bundle":"browserify index.js"
+  },
   "main": "index.js",
   "keywords": [],
   "author": {
@@ -21,6 +24,7 @@
     "@google-cloud/storage": "^6.11.0",
     "adm-zip": "^0.5.10",
     "asar": "^3.2.0",
+    "browserify": "^17.0.0",
     "cross-env": "^7.0.3",
     "datatables.net-dt": "^1.13.4",
     "dom-to-image": "^2.6.0",

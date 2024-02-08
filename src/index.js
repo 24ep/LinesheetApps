@@ -19,6 +19,7 @@ const opn = require('opn');
 
 
 
+
 // Set the PYTHONHOME and PATH environment variables
 
   // process.env.PYTHONHOME = path.join(__dirname, '../src/pythons');
