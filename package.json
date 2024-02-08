@@ -7,8 +7,8 @@
     "type": "git",
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
-  "script":{
-    "bundle":"browserify index.js"
+  "scripts":{
+    "bundle":"browserify src/module.js > src/module.bundle.js"
   },
   "main": "index.js",
   "keywords": [],
