@@ -1,16 +1,16 @@
 
 // var  PythonShell = ''
 
-const { PythonShell } = require('./python-shell');
-const XLSX = require('./xlsx');
-const path = require('./path');
-const fs = require('./fs');
-const { execSync, exec } = require('./child_process');
-const { promisify } = require('./util');
-const { appendFile } = require('./fs');
-const which = require('./which');
-const https = require('./https');
-const opn = require('./opn');
+// const { PythonShell } = require('python-shell');
+// const XLSX = require('/xlsx');
+// const path = require('path');
+// const fs = require('fs');
+// const { execSync, exec } = require('child_process');
+// const { promisify } = require('util');
+// const { appendFile } = require('fs');
+// const which = require('which');
+// const https = require('https');
+// const opn = require('opn');
 
 
 var configOptions = [
