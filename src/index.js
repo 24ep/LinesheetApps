@@ -62,11 +62,13 @@ const watcher = chokidar.watch(__dirname, {
 watcher.on('change', (filePath) => {
   lastExecutedFile = filePath;
   logLastExecutedFile();
+  console.log(`Last executed file: ${path.basename(lastExecutedFile)}`);
 });
 
 // Handle errors in the watcher
 watcher.on('error', (error) => {
   console.error(`Watcher error: ${error}`);
+  console.log(`Error executed file: ${path.basename(lastExecutedFile)}`);
 });
 
 // Handle the process exit to close the watcher
