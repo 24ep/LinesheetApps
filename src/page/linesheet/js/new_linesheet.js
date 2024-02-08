@@ -2,7 +2,7 @@
 // var  PythonShell = ''
 
 const { PythonShell } = require('python-shell');
-const XLSX = require('/xlsx');
+const XLSX = require('xlsx');
 const path = require('path');
 const fs = require('fs');
 const opn = require('opn');
