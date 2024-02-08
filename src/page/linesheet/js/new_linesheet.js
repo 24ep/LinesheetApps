@@ -2,99 +2,73 @@
 // var  PythonShell = ''
 
 
-console.log('call xlsx');
-const XLSX = require('xlsx');
+// console.log('call xlsx');
+// const XLSX = require('xlsx');
 
-console.log('call path');
-const path = require('path');
+// console.log('call path');
+// const path = require('path');
 
 console.log('call fs');
 const fs = require('fs');
 
-console.log('call child_process');
-// const { spawn } = require('child_process');
-// const path = require('path');
 
 
 
+// var configOptions = [
+//     { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
+//     { id: 'sale_channel_options', args: ['get_input', 'sale_channel', 'multiple'], variableName: 'saleChannelList'  , slim_id:'#sale_channel' },
+//     { id: 'production_type_options', args: ['get_input', 'production_type', 'single'], variableName: 'productionTypeList' , slim_id:'#production_type'  },
+//     { id: 'stock_source_options', args: ['get_input', 'stock_source', 'multiple'], variableName: 'stockSourceList' , slim_id:'#stock_source'  }
+// ];
 
-// console.log('call opn');
-// const opn = require('opn');
+// // var tail = require('tail.select.js');
 
-console.log('call PythonShell');
-// var PythonShell = require('python-shell');
-// const { pythonShell } = require('/src/index');
+// configOptions.forEach(option => {
+//     let optionList = '';
 
-// var path = require('path');
-// var fs = require('fs');
-// var { PythonShell } = require('python-shell');
-// var XLSX = require('xlsx');
-// var opn = require('opn');
+//     new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+//     // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
+//     .on('error', err => {
+//         console.error('An error occurred while running the Python script:', err);
+//         // handle the error here
+//     })
+//     .on('stderr', message => {
+//         console.error('Received error message:', message);
+//         // Notiflix.Loading.remove();
+//     })
+//     .on('message', message => {
+//         optionList += message;
+//         if (optionList) {
+//             document.getElementById(option.id).innerHTML = optionList;
+//             // runSlimSelect(option.slim_id);
+//             // runTomselect(option.slim_id);
+//             // new TomSelect(option.slim_id,{});
+//             setTimeout(() => {
+//                 new TomSelect(option.slim_id,{});
+//             }, 2000);
+//         }
 
-// import * as path from 'path';
-// import * as fs from 'fs';
-// import { PythonShell } from 'python-shell';
-// import * as XLSX from 'xlsx';
-// import * as opn from 'opn';
+//     });
 
-// import * as module from '/src/bundle.js';
-
-
-var configOptions = [
-    { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
-    { id: 'sale_channel_options', args: ['get_input', 'sale_channel', 'multiple'], variableName: 'saleChannelList'  , slim_id:'#sale_channel' },
-    { id: 'production_type_options', args: ['get_input', 'production_type', 'single'], variableName: 'productionTypeList' , slim_id:'#production_type'  },
-    { id: 'stock_source_options', args: ['get_input', 'stock_source', 'multiple'], variableName: 'stockSourceList' , slim_id:'#stock_source'  }
-];
-
-// var tail = require('tail.select.js');
-
-configOptions.forEach(option => {
-    let optionList = '';
-
-    new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
-    // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
-    .on('error', err => {
-        console.error('An error occurred while running the Python script:', err);
-        // handle the error here
-    })
-    .on('stderr', message => {
-        console.error('Received error message:', message);
-        // Notiflix.Loading.remove();
-    })
-    .on('message', message => {
-        optionList += message;
-        if (optionList) {
-            document.getElementById(option.id).innerHTML = optionList;
-            // runSlimSelect(option.slim_id);
-            // runTomselect(option.slim_id);
-            // new TomSelect(option.slim_id,{});
-            setTimeout(() => {
-                new TomSelect(option.slim_id,{});
-            }, 2000);
-        }
-
-    });
-
-});
+// });
 
 
-function runSlimSelect(select_id) {
-    new SlimSelect({
-        select: select_id,
-        settings: {
-            showSearch: true,
-            closeOnSelect: false,
-            allowDeselectOption: true,
-        },
-        events: {
-            afterChange: (newVal) => {
-                input = select_id.replace('_show', '');
-                document.querySelector(input).value = newVal.map(val => val.value).join(',');
-            }
-        }
-    });
-}
+// function runSlimSelect(select_id) {
+//     new SlimSelect({
+//         select: select_id,
+//         settings: {
+//             showSearch: true,
+//             closeOnSelect: false,
+//             allowDeselectOption: true,
+//         },
+//         events: {
+//             afterChange: (newVal) => {
+//                 input = select_id.replace('_show', '');
+//                 document.querySelector(input).value = newVal.map(val => val.value).join(',');
+//             }
+//         }
+//     });
+// }
 function get_folder_linesheetlist(){
     var folder_list_linesheetList=''
     new PythonShell(path.join(__dirname, `/src/page/linesheet/config/get_folder_list.py`), {args: ['nothing']})
