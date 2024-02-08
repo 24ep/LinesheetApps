@@ -11,11 +11,13 @@ const path = require('path');
 console.log('call fs');
 const fs = require('fs');
 
+
+
 // console.log('call opn');
 // const opn = require('opn');
 
-console.log('call PythonShell');
-var PythonShell = require('python-shell');
+// console.log('call PythonShell');
+// var PythonShell = require('python-shell');
 
 // var path = require('path');
 // var fs = require('fs');

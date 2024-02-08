@@ -7,6 +7,9 @@ const port = 3000;
 
 const path = require('path');
 
+const PythonShell = require('python-shell');
+
+
 // Set the PYTHONHOME and PATH environment variables
 
   // process.env.PYTHONHOME = path.join(__dirname, '../src/pythons');
