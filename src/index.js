@@ -6,23 +6,15 @@
 
 
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
 const app = express();
 const port = 3000;
 
-app.path = require('path');
-app.fs = require('fs');
+const path = require('path');
+const fs = require('fs');
 
-app.PythonShell= require('python-shell');
-app.XLSX = require('xlsx');
-// app.execSync = require('child_process');
-// app.exec = require('child_process');
-// app.promisify = require('util');
-// app.appendFile = require('fs');
-// app.which = require('which');
-// app.https = require('https');
-app.opn = require('opn');
+const { PythonShell } = require('python-shell');
+const XLSX = require('xlsx');
+const opn = require('opn');
 
 
 // Set the PYTHONHOME and PATH environment variables

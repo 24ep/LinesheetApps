@@ -12,6 +12,18 @@
 // const https = require('https');
 // const opn = require('opn');
 
+// const path = require('path');
+// const fs = require('fs');
+// const { PythonShell } = require('python-shell');
+// const XLSX = require('xlsx');
+// const opn = require('opn');
+
+import * as path from 'path';
+import * as fs from 'fs';
+import { PythonShell } from 'python-shell';
+import * as XLSX from 'xlsx';
+import * as opn from 'opn';
+
 
 var configOptions = [
     { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
@@ -25,7 +37,7 @@ var configOptions = [
 configOptions.forEach(option => {
     let optionList = '';
 
-    new app.PythonShell(app.path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+    new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
     // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
     .on('error', err => {
         console.error('An error occurred while running the Python script:', err);
@@ -70,7 +82,7 @@ function runSlimSelect(select_id) {
 }
 function get_folder_linesheetlist(){
     var folder_list_linesheetList=''
-    new app.PythonShell(app.path.join(__dirname, `/src/page/linesheet/config/get_folder_list.py`), {args: ['nothing']})
+    new PythonShell(path.join(__dirname, `/src/page/linesheet/config/get_folder_list.py`), {args: ['nothing']})
     .on('error', err => {
         console.error('An error occurred while running the Python script:', err);
         // handle the error here
@@ -86,7 +98,7 @@ get_folder_linesheetlist();
 function get_linesheetlist(folder){
     Notiflix.Loading.standard('Opening..');
     var linesheetList=''
-    new app.PythonShell(app.path.join(__dirname, `/src/page/linesheet/config/new_linesheet_get_list.py`), {args: [folder]})
+    new PythonShell(path.join(__dirname, `/src/page/linesheet/config/new_linesheet_get_list.py`), {args: [folder]})
     .on('error', err => {
         console.error('An error occurred while running the Python script:', err);
         Notiflix.Loading.remove();
@@ -119,7 +131,7 @@ function generate_linesheet(){
     var errormessage='';
     let generate_form_ms = '';
     console.log('reading_python');
-    new app.PythonShell(app.path.join(__dirname, `/src/page/linesheet/config/new_linesheet_create.py`), {
+    new PythonShell(path.join(__dirname, `/src/page/linesheet/config/new_linesheet_create.py`), {
         args: ['generate_form', brand, template,sku,launch_date,stock_source,sale_channel,production_type,contact_person]
     })
     .on('error', err => {
@@ -161,7 +173,7 @@ function generate_linesheet(){
                         'you file name is '+ generate_form_ms,
                         'Open the file',
                         function cb() {
-                            new app.PythonShell(app.path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
+                            new PythonShell(path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
                                 args: [generate_form_ms]
                             })
                         },
@@ -171,7 +183,7 @@ function generate_linesheet(){
             }
 
             function open_xlsm(file_location){
-                new app.PythonShell(app.path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
+                new PythonShell(path.join(__dirname, `/src/page/linesheet/config/open_excel_linesheet.py`), {
                     args: [file_location]
                 })
                 .on('error', err => {
@@ -181,9 +193,9 @@ function generate_linesheet(){
             }
             // new DataTable('#new_linesheet_list');
             function convertExcelToJsonTransposed(filePath,sheet_name) {
-                var workbook = app.XLSX.readFile(filePath);
+                var workbook = XLSX.readFile(filePath);
                 var worksheet = workbook.Sheets[sheet_name];
-                var jsonData = app.XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
                 var headers = jsonData[0];
                 var rows = jsonData.slice(1);
                 var transposedData = rows.map(row => {
@@ -196,9 +208,9 @@ function generate_linesheet(){
                 return transposedData;
             }
             function convertExcelToJson(filePath,sheet_name) {
-                var workbook = app.XLSX.readFile(filePath);
+                var workbook = XLSX.readFile(filePath);
                 var worksheet = workbook.Sheets[sheet_name];
-                var jsonData = app.XLSX.utils.sheet_to_json(worksheet, { header: 0, defval: '' });
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 0, defval: '' });
 
                 // Remove rows 2 to 11
                 if(sheet_name=='IM_FORM'){
@@ -215,12 +227,12 @@ function generate_linesheet(){
             function read_json_xlsm(filePath) {
                 // Storing a variable in session storage
                 sessionStorage.setItem('linesheet_file_path', filePath);
-                load_page(app.path.join(__dirname, '/src/page/linesheet/edit_linesheet.html'));
+                load_page(path.join(__dirname, '/src/page/linesheet/edit_linesheet.html'));
             }
             function read_json_xlsm_convert(filePath) {
                 // Storing a variable in session storage
                 sessionStorage.setItem('linesheet_file_path', filePath);
-                load_page(app.path.join(__dirname, '/src/page/linesheet/convert_linesheet.html'));
+                load_page(path.join(__dirname, '/src/page/linesheet/convert_linesheet.html'));
             }
             function get_linesheet_information(attribute_name){
 
@@ -235,7 +247,7 @@ function generate_linesheet(){
 
             function revealInFileExplorer(path) {
                 var folderPath = path;
-                app.opn(folderPath)
+                opn(folderPath)
                 .then(() => {
                     console.log('Folder opened successfully');
                 })
@@ -251,7 +263,7 @@ function generate_linesheet(){
 
 
             function createFolder(folderPath) {
-                app.fs.mkdir(folderPath, { recursive: true }, (err) => {
+                fs.mkdir(folderPath, { recursive: true }, (err) => {
                     if (err) {
                         Notiflix.Report.failure(
                             'Create unsuccessful',
@@ -285,7 +297,7 @@ function generate_linesheet(){
 
                     // Function to remove a folder
                     function removeFolder(folderPath) {
-                        app.fs.rmdir(folderPath, { recursive: true }, (err) => {
+                        fs.rmdir(folderPath, { recursive: true }, (err) => {
                             if (err) {
                                 Notiflix.Report.failure(
                                     'remove unsuccessful',
