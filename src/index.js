@@ -7,7 +7,6 @@ const port = 3000;
 
 const path = require('path');
 
-const PythonShell = require('python-shell');
 
 
 // Set the PYTHONHOME and PATH environment variables
@@ -40,9 +39,3 @@ app.listen(port, () => {
   console.log(`Current path: ${__dirname}`);
 
 });
-// Export the PythonShell instance for use in other files
-module.exports = {
-  PythonShell,
-  path,
-};
-
