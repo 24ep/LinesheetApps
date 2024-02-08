@@ -12,17 +12,17 @@
 // const https = require('https');
 // const opn = require('opn');
 
-// const path = require('path');
-// const fs = require('fs');
-// const { PythonShell } = require('python-shell');
-// const XLSX = require('xlsx');
-// const opn = require('opn');
+const path = require('path');
+const fs = require('fs');
+const { PythonShell } = require('python-shell');
+const XLSX = require('xlsx');
+const opn = require('opn');
 
-import * as path from 'path';
-import * as fs from 'fs';
-import { PythonShell } from 'python-shell';
-import * as XLSX from 'xlsx';
-import * as opn from 'opn';
+// import * as path from 'path';
+// import * as fs from 'fs';
+// import { PythonShell } from 'python-shell';
+// import * as XLSX from 'xlsx';
+// import * as opn from 'opn';
 
 
 var configOptions = [
