@@ -1,11 +1,21 @@
 
 // var  PythonShell = ''
 
+console.log('PythonShell');
 const { PythonShell } = require('python-shell');
+
+console.log('xlsx');
 const XLSX = require('xlsx');
+
+console.log('path');
 const path = require('path');
+
+console.log('fs');
 const fs = require('fs');
+
+console.log('opn');
 const opn = require('opn');
+
 
 // var path = require('path');
 // var fs = require('fs');

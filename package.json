@@ -7,8 +7,8 @@
     "type": "git",
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
-  "scripts":{
-    "bundle":"browserify src/page/linesheet/js/new_linesheet.js > src/page/linesheet/js/new_linesheet.bundle.js"
+  "scripts": {
+    "bundle": "browserify src/page/linesheet/js/new_linesheet.js > src/page/linesheet/js/new_linesheet.bundle.js"
   },
   "main": "index.js",
   "keywords": [],
@@ -42,6 +42,7 @@
     "pako": "^2.1.0",
     "pandas": "^0.0.3",
     "pj-custom-electron-titlebar": "^3.2.0",
+    "puppeteer": "^1.7.0",
     "python-shell": "^5.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
