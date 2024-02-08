@@ -12,7 +12,7 @@ console.log('call fs');
 const fs = require('fs');
 
 console.log('call child_process');
-const { spawn } = require('child_process');
+// const { spawn } = require('child_process');
 // const path = require('path');
 
 
@@ -21,8 +21,8 @@ const { spawn } = require('child_process');
 // console.log('call opn');
 // const opn = require('opn');
 
-// console.log('call PythonShell');
-// var PythonShell = require('python-shell');
+console.log('call PythonShell');
+var PythonShell = require('python-shell');
 
 // var path = require('path');
 // var fs = require('fs');
@@ -51,65 +51,29 @@ var configOptions = [
 configOptions.forEach(option => {
     let optionList = '';
 
-    // new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
-    // // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
-    // .on('error', err => {
-    //     console.error('An error occurred while running the Python script:', err);
-    //     // handle the error here
-    // })
-    // .on('stderr', message => {
-    //     console.error('Received error message:', message);
-    //     // Notiflix.Loading.remove();
-    // })
-    // .on('message', message => {
-    //     optionList += message;
-    //     if (optionList) {
-    //         document.getElementById(option.id).innerHTML = optionList;
-    //         // runSlimSelect(option.slim_id);
-    //         // runTomselect(option.slim_id);
-    //         // new TomSelect(option.slim_id,{});
-    //         setTimeout(() => {
-    //             new TomSelect(option.slim_id,{});
-    //         }, 2000);
-    //     }
-
-    // });
-
-
-// Assuming you have a function to handle the execution of Python code
-async function runPythonScript(scriptPath, args) {
-    // Wait for Pyodide to load
-    await languagePluginLoader;
-  
-    // Convert args to a string
-    const argsString = JSON.stringify(args);
-  
-    // Execute Python code using Pyodide
-    const result = pyodide.runPythonAsync(`
-      import sys
-      sys.argv = ['${scriptPath}', ${argsString}]
-      exec(open('${scriptPath}').read())
-    `);
-  
-    // Handle the result as needed
-    console.log(result);
-  }
-  
-  // Call the function with your script path and arguments
-  runPythonScript('src/page/linesheet/config/new_linesheet_config.py', option.args)
-    .then(() => {
-      // Code to run after the Python script execution is complete
-      // For example, update the UI
-      document.getElementById(option.id).innerHTML = optionList;
-      setTimeout(() => {
-        new TomSelect(option.slim_id, {});
-      }, 2000);
+    new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+    // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
+    .on('error', err => {
+        console.error('An error occurred while running the Python script:', err);
+        // handle the error here
     })
-    .catch((error) => {
-      console.error('An error occurred while running the Python script:', error);
-      // Handle the error here
+    .on('stderr', message => {
+        console.error('Received error message:', message);
+        // Notiflix.Loading.remove();
+    })
+    .on('message', message => {
+        optionList += message;
+        if (optionList) {
+            document.getElementById(option.id).innerHTML = optionList;
+            // runSlimSelect(option.slim_id);
+            // runTomselect(option.slim_id);
+            // new TomSelect(option.slim_id,{});
+            setTimeout(() => {
+                new TomSelect(option.slim_id,{});
+            }, 2000);
+        }
+
     });
-  
 
 });
 
