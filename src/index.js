@@ -8,7 +8,6 @@ const port = 3000;
 const path = require('path');
 
 const PythonShell = require('python-shell');
-const chokidar = require('chokidar');
 
 
 // Set the PYTHONHOME and PATH environment variables
@@ -41,38 +40,8 @@ app.listen(port, () => {
   console.log(`Current path: ${__dirname}`);
 
 });
-
-let lastExecutedFile = __filename;
-
-// Function to log the last executed file
-const logLastExecutedFile = () => {
-  console.log(`Last executed file: ${path.basename(lastExecutedFile)}`);
+// Export the PythonShell instance for use in other files
+module.exports = {
+  PythonShell,
 };
-
-// Initial log
-logLastExecutedFile();
-
-// Watch for changes in the current directory
-const watcher = chokidar.watch(__dirname, {
-  ignored: /node_modules/,
-  persistent: true,
-});
-
-// When a file is added or changed, update the lastExecutedFile variable
-watcher.on('change', (filePath) => {
-  lastExecutedFile = filePath;
-  logLastExecutedFile();
-  console.log(`Last executed file: ${path.basename(lastExecutedFile)}`);
-});
-
-// Handle errors in the watcher
-watcher.on('error', (error) => {
-  console.error(`Watcher error: ${error}`);
-  console.log(`Error executed file: ${path.basename(lastExecutedFile)}`);
-});
-
-// Handle the process exit to close the watcher
-process.on('exit', () => {
-  watcher.close();
-});
 
