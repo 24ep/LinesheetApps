@@ -1,5 +1,5 @@
 
-var  PythonShell = ''
+// var  PythonShell = ''
 
 
 console.log('call xlsx');
