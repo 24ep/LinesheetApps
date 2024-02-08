@@ -11,6 +11,8 @@ const path = require('path');
 console.log('call fs');
 const fs = require('fs');
 
+const { spawn } = require('child_process');
+const path = require('path');
 
 
 
@@ -48,28 +50,59 @@ var configOptions = [
 configOptions.forEach(option => {
     let optionList = '';
 
-    new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
-    // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
-    .on('error', err => {
-        console.error('An error occurred while running the Python script:', err);
-        // handle the error here
-    })
-    .on('stderr', message => {
-        console.error('Received error message:', message);
+    // new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+    // // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
+    // .on('error', err => {
+    //     console.error('An error occurred while running the Python script:', err);
+    //     // handle the error here
+    // })
+    // .on('stderr', message => {
+    //     console.error('Received error message:', message);
+    //     // Notiflix.Loading.remove();
+    // })
+    // .on('message', message => {
+    //     optionList += message;
+    //     if (optionList) {
+    //         document.getElementById(option.id).innerHTML = optionList;
+    //         // runSlimSelect(option.slim_id);
+    //         // runTomselect(option.slim_id);
+    //         // new TomSelect(option.slim_id,{});
+    //         setTimeout(() => {
+    //             new TomSelect(option.slim_id,{});
+    //         }, 2000);
+    //     }
+
+    // });
+
+
+
+    const pythonScriptPath = path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py');
+    const args = option.args; // Assuming option.args is an array of command line arguments
+
+    const pythonProcess = spawn('python', [pythonScriptPath, ...args]);
+
+    pythonProcess.stdout.on('data', (data) => {
+        // Handle standard output
+        optionList += data.toString();
+    });
+
+    pythonProcess.stderr.on('data', (data) => {
+        console.error('Received error message:', data.toString());
         // Notiflix.Loading.remove();
-    })
-    .on('message', message => {
-        optionList += message;
+    });
+
+    pythonProcess.on('error', (err) => {
+        console.error('An error occurred while running the Python script:', err);
+        // Handle the error here
+    });
+
+    pythonProcess.on('close', (code) => {
         if (optionList) {
             document.getElementById(option.id).innerHTML = optionList;
-            // runSlimSelect(option.slim_id);
-            // runTomselect(option.slim_id);
-            // new TomSelect(option.slim_id,{});
             setTimeout(() => {
-                new TomSelect(option.slim_id,{});
+                new TomSelect(option.slim_id, {});
             }, 2000);
         }
-
     });
 
 });
