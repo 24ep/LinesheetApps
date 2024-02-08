@@ -63,11 +63,12 @@ new = sys.argv[10]
 allow_installment = sys.argv[11]
 can_return = sys.argv[12]
 can_exchange = sys.argv[13]
-job_number = sys.argv[14]
+embed_size_guide = sys.argv[14]
+job_number = sys.argv[15]
 # product_status = sys.argv[15]
-launch_date = sys.argv[15]
-sheet_name = sys.argv[16]
-product_template = sys.argv[17]
+launch_date = sys.argv[16]
+sheet_name = sys.argv[17]
+product_template = sys.argv[18]
 
 
 # get template
