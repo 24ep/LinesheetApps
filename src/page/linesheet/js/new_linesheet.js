@@ -15,7 +15,7 @@ const fs = require('fs');
 // const opn = require('opn');
 
 console.log('call PythonShell');
-const PythonShell = require('python-shell');
+var PythonShell = require('python-shell');
 
 // var path = require('path');
 // var fs = require('fs');
