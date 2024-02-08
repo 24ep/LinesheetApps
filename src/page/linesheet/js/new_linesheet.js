@@ -11,7 +11,7 @@ const path = require('path');
 console.log('call fs');
 const fs = require('fs');
 
-const { spawn } = require('child_process');
+const spawn  = require('child_process');
 // const path = require('path');
 
 
