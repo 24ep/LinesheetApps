@@ -16,12 +16,12 @@ app.fs = require('fs');
 
 app.PythonShell= require('python-shell');
 app.XLSX = require('xlsx');
-app.execSync = require('child_process');
-app.exec = require('child_process');
-app.promisify = require('util');
-app.appendFile = require('fs');
-app.which = require('which');
-app.https = require('https');
+// app.execSync = require('child_process');
+// app.exec = require('child_process');
+// app.promisify = require('util');
+// app.appendFile = require('fs');
+// app.which = require('which');
+// app.https = require('https');
 app.opn = require('opn');
 
 
