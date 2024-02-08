@@ -43,5 +43,6 @@ app.listen(port, () => {
 // Export the PythonShell instance for use in other files
 module.exports = {
   PythonShell,
+  path,
 };
 

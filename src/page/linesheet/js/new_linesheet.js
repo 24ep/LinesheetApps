@@ -23,7 +23,7 @@ console.log('call child_process');
 
 console.log('call PythonShell');
 // var PythonShell = require('python-shell');
-const { pythonShell } = require('/src/index');
+// const { pythonShell } = require('/src/index');
 
 // var path = require('path');
 // var fs = require('fs');

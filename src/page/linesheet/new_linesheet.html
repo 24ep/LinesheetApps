@@ -167,6 +167,48 @@
                     </div>
                 </div>
             </div>
+            <script>
+            const { pythonShell } = require('/src/index');
+            const  path = require('/src/path');
+            
+            var configOptions = [
+    { id: 'template_options', args: ['get_family'], variableName: 'familyList' , slim_id:'#template' },
+    { id: 'sale_channel_options', args: ['get_input', 'sale_channel', 'multiple'], variableName: 'saleChannelList'  , slim_id:'#sale_channel' },
+    { id: 'production_type_options', args: ['get_input', 'production_type', 'single'], variableName: 'productionTypeList' , slim_id:'#production_type'  },
+    { id: 'stock_source_options', args: ['get_input', 'stock_source', 'multiple'], variableName: 'stockSourceList' , slim_id:'#stock_source'  }
+];
+
+// var tail = require('tail.select.js');
+
+configOptions.forEach(option => {
+    let optionList = '';
+
+    new PythonShell(path.join(__dirname, '/src/page/linesheet/config/new_linesheet_config.py'), { args: option.args })
+    // new PythonShell(`src//src/page/linesheet/config/new_linesheet_config.py`, { args: option.args })
+    .on('error', err => {
+        console.error('An error occurred while running the Python script:', err);
+        // handle the error here
+    })
+    .on('stderr', message => {
+        console.error('Received error message:', message);
+        // Notiflix.Loading.remove();
+    })
+    .on('message', message => {
+        optionList += message;
+        if (optionList) {
+            document.getElementById(option.id).innerHTML = optionList;
+            // runSlimSelect(option.slim_id);
+            // runTomselect(option.slim_id);
+            // new TomSelect(option.slim_id,{});
+            setTimeout(() => {
+                new TomSelect(option.slim_id,{});
+            }, 2000);
+        }
+
+    });
+
+});
+            </script>
             <!-- <script type="text/javascript" src="https://pyodide-cdn2.iodide.io/v0.18.0/full/pyodide.js"></script> -->
             <script src="/page/linesheet/js/new_linesheet.bundle.js"></script>
 
