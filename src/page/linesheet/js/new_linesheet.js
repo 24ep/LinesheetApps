@@ -11,8 +11,8 @@ const path = require('path');
 console.log('call fs');
 const fs = require('fs');
 
-console.log('call opn');
-const opn = require('opn');
+// console.log('call opn');
+// const opn = require('opn');
 
 console.log('call PythonShell');
 const PythonShell = require('python-shell');
@@ -252,16 +252,16 @@ function generate_linesheet(){
 
             // import path from 'path';
 
-            function revealInFileExplorer(path) {
-                var folderPath = path;
-                opn(folderPath)
-                .then(() => {
-                    console.log('Folder opened successfully');
-                })
-                .catch((err) => {
-                    console.error('Error while opening folder:', err);
-                });
-            }
+            // function revealInFileExplorer(path) {
+            //     var folderPath = path;
+            //     opn(folderPath)
+            //     .then(() => {
+            //         console.log('Folder opened successfully');
+            //     })
+            //     .catch((err) => {
+            //         console.error('Error while opening folder:', err);
+            //     });
+            // }
 
 
 
