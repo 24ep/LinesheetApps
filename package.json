@@ -8,7 +8,7 @@
     "url": "https://github.com/DVM-CDS-CONTENT/LinesheetApps"
   },
   "scripts": {
-    "bundle": "browserify src/page/linesheet/js/new_linesheet.js > src/page/linesheet/js/new_linesheet.bundle.js && browserify src/page/linesheet/js/convert_linesheet.js > src/page/linesheet/js/convert_linesheet.bundle.js && browserify src/page/tools/size_guide_generator.js > src/page/tools/size_guide_generator.bundle.js && browserify src/page/tools/product_dimension_generate.bundle.js > src/page/tools/product_dimension_generate.bundle.js"
+    "bundle": "browserify src/page/linesheet/js/new_linesheet.js > src/page/linesheet/js/new_linesheet.bundle.js && browserify src/page/linesheet/js/convert_linesheet.js > src/page/linesheet/js/convert_linesheet.bundle.js && browserify src/page/tools/size_guide_generator.js > src/page/tools/size_guide_generator.bundle.js && browserify src/page/tools/product_dimension_generate.js > src/page/tools/product_dimension_generate.bundle.js"
   },
   "main": "index.js",
   "keywords": [],
