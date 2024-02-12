@@ -2,17 +2,17 @@
 <style>
 
     .dropdown_rc {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 120px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        padding: 12px 16px;
+        z-index: 1;
     }
 
     .element.w-100.p-3:hover {
-    background: #ececec;
+        background: #ececec;
 
     }
 
@@ -104,6 +104,7 @@
                                     <span class="placeholder w-75 opacity-25 bg-secondary"></span>
                                 </p>
                             </div>
+
                             <!-- template -->
                             <div id='template_options'>
                                 <p class="placeholder-glow">
@@ -111,6 +112,7 @@
                                     <span class="placeholder w-75 opacity-25 bg-secondary"></span>
                                 </p>
                             </div>
+
                             <hr class="text-secondary">
                             <span class="fw-bold text-black mt-2 mb-2" class="text-black">
                                 <ion-icon name="ticket-outline"></ion-icon>
@@ -119,17 +121,15 @@
                                 <label for="launch_date" class="text-black mt-2 mb-2">launch date</label>
                                 <input type="date" class="form-control from-control-sm" id="launch_date" placeholder="">
                                 <!-- production tpe -->
-                                <!-- <div id='production_type_options'>
+                                <div id='production_type_options'>
                                     <p class="placeholder-glow">
                                         <span class="placeholder w-25 opacity-25 bg-secondary"></span>
                                         <span class="placeholder w-75 opacity-25 bg-secondary"></span>
                                     </p>
-                                </div> -->
-                                <div id='production_type_options'>
-                                    <%= production_type_options %>
                                 </div>
-                                
-                              
+
+
+
                                 <!-- chanel -->
                                 <div id='sale_channel_options'>
                                     <p class="placeholder-glow">
@@ -137,10 +137,11 @@
                                         <span class="placeholder w-75 opacity-25 bg-secondary"></span>
                                     </p>
                                 </div>
+
                                 <!-- contact person -->
 
-                                    <label for="contact_person" class="text-black mt-2 mb-2" >Contact Person</label>
-                                    <textarea class="form-control" placeholder="Name , Email , Phone" id="contact_person" style="height: 100px"></textarea>
+                                <label for="contact_person" class="text-black mt-2 mb-2" >Contact Person</label>
+                                <textarea class="form-control" placeholder="Name , Email , Phone" id="contact_person" style="height: 100px"></textarea>
 
                                 <div class="mt-3 mb-3">
                                     <button type="button" onclick="generate_linesheet()" id="generate_linesheet" class="btn btn-dark btn-sm" style="width: 100%;">Generate linesheet</button>
@@ -159,8 +160,8 @@
                     <div class="col-2 pt-4 border-end p-0">
 
                         <!-- <div id="dropdown1" class="dropdown dropdown-menu p-0 border-0">
-                                <li><a class="dropdown-item" href="#"><ion-icon name="add-outline"></ion-icon> New folder</a></li>
-                          </div> -->
+                            <li><a class="dropdown-item" href="#"><ion-icon name="add-outline"></ion-icon> New folder</a></li>
+                        </div> -->
 
                         <div id="folder_list">
                             <!-- Linesheet -->
@@ -178,21 +179,104 @@
 
             <script>
 
-            fetch('/linesheet-creation')
-            .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load new_linesheet.js');
+                fetch('/linesheet-creation')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load new_linesheet.js');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // console.log(data);
+                    const jsonData = JSON.parse(data);
+                    // Access the properties
+                    var templateOptions = jsonData.template_options;
+                    var saleChannelOptions = jsonData.sale_channel_options;
+                    var productionTypeOptions = jsonData.production_type_options;
+                    var stockSourceOptions = jsonData.stock_source_options;
+
+                    document.getElementById('template_options').innerHTML = templateOptions;
+                    document.getElementById('sale_channel_options').innerHTML = saleChannelOptions;
+                    document.getElementById('production_type_options').innerHTML = productionTypeOptions;
+                    document.getElementById('stock_source_options').innerHTML = stockSourceOptions;
+
+                    new TomSelect('#template',{});
+                    new TomSelect('#sale_channel',{});
+                    new TomSelect('#production_type',{});
+                    new TomSelect('#stock_source',{});
+
+                })
+                .catch(error => {
+                    console.error(error); // Log error message
+                    // Optionally, you can handle the error here
+                });
+
+
+                fetch('/get_folder_linesheet_list')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load new_linesheet.js');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('folder_list').innerHTML = data;
+
+                })
+                .catch(error => {
+                    console.error(error); // Log error message
+                    // Optionally, you can handle the error here
+                });
+
+
+            function generate_linesheet(){
+                Notiflix.Loading.standard('Generating ...');
+
+                brand = document.getElementById("brand").value
+                template = [...document.querySelectorAll("#template option:checked")].map(option => option.value).join(',');
+                sku = document.getElementById("sku").value
+                launch_date = document.getElementById("launch_date").value
+                stock_source = [...document.querySelectorAll("#stock_source option:checked")].map(option => option.value).join(',');
+                sale_channel = [...document.querySelectorAll("#sale_channel option:checked")].map(option => option.value).join(',');
+                production_type = document.getElementById("production_type").value
+                contact_person=document.getElementById("contact_person").value
+
+                const arguments = {
+                    brand: brand,
+                    template: template,
+                    sku: sku,
+                    launch_date: launch_date,
+                    stock_source: stock_source,
+                    sale_channel: sale_channel,
+                    production_type: production_type,
+                    contact_person: contact_person,
+                };
+
+                const queryString = Object.keys(arguments)
+                .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(arguments[key]))
+                .join('&');
+
+                const url = '/generate-new-linesheet?' + queryString;
+                fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load new_linesheet.js');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+
+
+                })
+                .catch(error => {
+                    console.error(error); // Log error message
+                    // Optionally, you can handle the error here
+                });
+
+
             }
-            return response.text();
-            })
-            .then(data => {
-            console.log(data); // Log success message
-            // Optionally, you can perform additional actions here
-            })
-            .catch(error => {
-            console.error(error); // Log error message
-            // Optionally, you can handle the error here
-            });
+
+
             </script>
 
 

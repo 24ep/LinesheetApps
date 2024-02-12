@@ -15,8 +15,6 @@ for asset in folder_list :
         # folder_path_os = os.path.join(*folder_path_os.split('/'))
 
         print('''
-
-
                 <div class="nav-item dropdown dropend">
                 <a class="element w-100 p-3 pb-1 pt-1 fw-700 nav-link dropdown-toggle" style="font-size:13px" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <ion-icon name="folder-outline" class="me-2"></ion-icon>'''+asset+'''
@@ -27,9 +25,6 @@ for asset in folder_list :
                         <li><a class="dropdown-item" style="font-size:13px" onclick="removeFolder(&#39;'''+asset+'''&#39;)" >Remove</a></li>
                     </ul>
                 </div>
-
-
-
                 ''')
 print(''' <hr>
     <button type="button" class="border-0 w-100  ms-2 bg-white " style="font-size:13px;text-align: -webkit-left;" onclick="prompt_folder_name_create()">              <ion-icon name="add-outline" role="img" class="md hydrated"></ion-icon> Create new folder    </button>''')
