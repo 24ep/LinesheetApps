@@ -197,7 +197,7 @@
     </div>
 </div>
 <script>
-    
+
 
     document.getElementById("dimension_width_list").style.display = "block";
     document.getElementById("dimension_height_list").style.display = "none";
@@ -555,4 +555,23 @@
     }
 </script>
 
-<script src="/page/tools/product_dimension_generate.bundle.js"></script>
+<script>
+    var domtoimage = require('dom-to-image');
+
+    document
+        .getElementById("download_as_jpg")
+        .addEventListener("click", function () {
+            chart_name = document.getElementById("chart_name").value;
+            domtoimage
+                .toJpeg(document.getElementById("SizeGuideFrameDiv"))
+                .then(function (dataUrl) {
+                    var link = document.createElement("a");
+                    link.download = chart_name + " Product_dimension.jpg";
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function (error) {
+                    console.error("oops, something went wrong!", error);
+                });
+        });
+</script>
